@@ -1,0 +1,127 @@
+$brand: #1f6feb;
+
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome/css/font-awesome.css";
+
+// Dashboard tile styles
+@import "dashboard-tile";
+
+.workflow-container {
+  font-family: Arial, sans-serif;
+}
+
+.workflow-title {
+  color: $brand;
+}
+
+.wf-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.wf-modal-card {
+  background: #fff;
+  border-radius: .25rem;
+}
+
+.wf-modal-card .close {
+  float: right;
+  background: transparent;
+  border: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+// BootstrapVue generated backdrop id for modal with id="workflow-modal"
+#workflow-modal___BV_modal_backdrop_ {
+  opacity: .5 !important;
+}
+
+ol.breadcrumb {
+  background-color: unset !important;
+  margin: 0;
+  padding: 0 0 10px 0;
+}
+
+.global-none-found-message {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.global-none-found-message p {
+  font-size: 1.3125rem;
+  margin-top: 20px;
+  margin-left: 14px;
+}
+
+.new-workflow-label {
+  display: block;
+  text-align: left;
+}
+
+
+
+.max-width-none {
+  max-width: none !important;
+  min-width: none !important;
+  padding-right: 0;
+  width: calc(100% - -15px);
+}
+
+
+.mini span {
+  width: unset;
+}
+
+table.table tr td {
+  padding: 10px 15px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.swal2-container {
+  z-index: 150 !important;
+}
+
+button.action-button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    background: red;
+}
+
+.pagination-button {
+  padding: 10px 20px !important;
+  border-radius: 4px !important;
+  font-weight: unset !important;
+  font-size: inherit !important;
+}
+
+button:hover {
+  text-decoration: none;
+}
+
+.width-70 {
+  width: 70vw;
+}
+
+.width-60 {
+  width: 60vw;
+} 
