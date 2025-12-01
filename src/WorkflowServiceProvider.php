@@ -8,6 +8,12 @@ class WorkflowServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Console\InstallWorkflowCommand::class,
+            ]);
+        }
+
         $this->publishes([
             __DIR__ . '/../config/workflow.php' => config_path('workflow.php'),
         ], 'config');

@@ -6,13 +6,31 @@ A modular workflow package providing models, controllers, Vue-powered CRUD UI, a
 - PHP 7.0+ (Laravel 5.5 app)
 - Node.js (to build assets)
 
-## Install (local package within an existing Laravel 5.5 app)
-1) Add PSR-4 autoload to your app `composer.json`:
+## Install (Laravel 5.5 app)
+
+### One-step install
+
+```
+php artisan assure-workflow:install --build
+```
+
+Options:
+- `--production` to run a production asset build (`npm run production`)
+- Omit `--build` if you only want to run the DB migrations
+
+This command:
+- Runs package migrations (auto-loaded via the service provider)
+- Optionally installs Node deps and builds the package assets
+
+Assets are served directly from the package at `/vendor/assure-workflow/*`, so publishing to `public/` is not required.
+
+### Manual install (if you prefer explicit steps)
+1) Add PSR-4 autoload to your app `composer.json` (local path example):
 
 ```
 "autoload": {
   "psr-4": {
-    "Assure\\Workflow\\": "workflow-package/src/"
+    "Assure\\Workflow\\": "packages/workflow/src/"
   }
 }
 ```
@@ -23,7 +41,9 @@ Then run:
 composer dump-autoload
 ```
 
-2) Register the service provider in `config/app.php`:
+2) Service Provider
+
+The package registers via Laravel package auto-discovery. If you disabled discovery, register the provider in `config/app.php`:
 
 ```
 'providers' => [
@@ -32,16 +52,15 @@ composer dump-autoload
 ],
 ```
 
-3) Build and publish assets:
+3) Build assets (optional)
 
 ```
-cd workflow-package
+cd packages/workflow
 npm install
 npm run dev
-php artisan vendor:publish --provider="Assure\\Workflow\\WorkflowServiceProvider" --tag=public --force
 ```
 
-This publishes compiled CSS/JS to `public/vendor/assure-workflow/`.
+Assets are served from `/vendor/assure-workflow/*` by the package; publishing to `public/` is not required.
 
 4) Run migrations:
 
@@ -51,7 +70,7 @@ Ensure your DB is reachable (.env), then:
 php artisan migrate
 ```
 
-The package auto-loads its migrations from `workflow-package/database/migrations`.
+The package auto-loads its migrations from `packages/workflow/database/migrations`.
 
 ## Routes
 - Web UI
@@ -71,22 +90,15 @@ The package auto-loads its migrations from `workflow-package/database/migrations
 
 ## Development
 - Source:
-  - PHP: `workflow-package/src` (models, services, controllers, provider)
-  - Vue/Assets: `workflow-package/resources/assets` (built to `workflow-package/public` via Laravel Mix)
-  - Views: `workflow-package/resources/views`
+  - PHP: `packages/workflow/src` (models, services, controllers, provider)
+  - Vue/Assets: `packages/workflow/resources/assets` (built via Laravel Mix)
+  - Views: `packages/workflow/resources/views`
 - Build:
 
 ```
 npm run dev     # dev build
 npm run watch   # watch mode
 npm run production  # minified build
-```
-
-## Publishing
-Re-publish assets after each build if your app serves from `public/vendor`:
-
-```
-php artisan vendor:publish --provider="Assure\\Workflow\\WorkflowServiceProvider" --tag=public --force
 ```
 
 ## Notes
