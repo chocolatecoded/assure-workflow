@@ -8,6 +8,33 @@ A modular workflow package providing models, controllers, Vue-powered CRUD UI, a
 
 ## Install (Laravel 5.5 app)
 
+### Composer (VCS) setup
+
+Add the Git repository and require the package in your app’s `composer.json`:
+
+```json
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/chocolatecoded/assure-workflow"
+    }
+  ],
+  "require": {
+    "assure/workflow": "dev-master"
+  }
+}
+```
+
+Alternatively, configure via CLI:
+
+```bash
+composer config repositories.assure-workflow vcs https://github.com/chocolatecoded/assure-workflow
+composer require assure/workflow:dev-master
+```
+
+After installation, proceed with the install command below to run migrations and (optionally) build assets.
+
 ### One-step install
 
 ```
@@ -80,6 +107,7 @@ class CompanyController extends Controller
     public function details($id)
     {
         $company = Company::findOrFail($id);
+        // Load workflows to populate the Blade dropdown
         $configurableWorkflows = $this->getConfigurableWorkflows();
 
         return view('client.detail', [
@@ -88,6 +116,7 @@ class CompanyController extends Controller
         ]);
     }
 
+    // Handles saving the feature flag and redirect
     public function update(Request $request, $id)
     {
         $company = Company::findOrFail($id);
@@ -95,6 +124,8 @@ class CompanyController extends Controller
 
         // Persist the feature flag (casts to 0/1)
         $this->saveConfigurableWorkflowsFlag($company, $data);
+
+        $company->save();
 
         return redirect()->route('client.view', ['#/view/clients']);
     }
