@@ -1,6 +1,5 @@
 # Node & build artifacts
 node_modules/
-public/
 .npm/
 *.log
 npm-debug.log*
