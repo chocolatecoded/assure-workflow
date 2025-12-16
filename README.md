@@ -235,6 +235,12 @@ The path repository is checked first.
 If the local path exists and is valid, Composer will use it.
 If the path does not exist or is invalid, Composer will fall back to the VCS repository.
 
+```bash
+composer update assure/workflow
+```
+
+to update the package 
+
 ### 3. Frontend Assets
 
 For now, always make sure to include the public assets when promoting changes so that UI updates are properly reflected.
@@ -245,3 +251,5 @@ npm run dev
 ```
 
 ### 4. Promote everything including public js and css
+
+# !!! important Before promoting be cautious to the composer.json in assure project !!!
