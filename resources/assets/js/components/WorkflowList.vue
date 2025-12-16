@@ -10,11 +10,12 @@
         <div class="large-6 columns" style="text-align: right; margin-bottom: 10px;">
           <button @click.prevent="importWorkFlow()" class="action-button menu" role="button">Import Workflow</button>
           <button @click.prevent="addWorkFlow" class="action-button menu" role="button">Add Workflow</button>
-          <WorkflowModal v-if="creatingWorkflow || editingWorkflow"
+          <WorkflowModal v-if="creatingWorkflow || editingWorkflow || cloningWorkflow"
                           @closed="closeModal"
                           @update="saveWorkflow"
                           :workflow="workflowToEdit"
-                          :workflows="workflows"/>
+                          :workflows="workflows"
+                          :isCloning="cloningWorkflow"/>
         </div>
       </div>
 
@@ -119,7 +120,9 @@ export default {
     item: [],
     creatingWorkflow: false,
     editingWorkflow: false,
+    cloningWorkflow: false,
     workflowToEdit: null,
+    workflowToClone: null,
     forms: [],
     work: null,
     newCreatedWorkFlow: null,
@@ -137,6 +140,7 @@ export default {
     this.onPageShow = () => { 
       this.creatingWorkflow = false
       this.editingWorkflow = false
+      this.cloningWorkflow = false
     }
     if (typeof window !== 'undefined') {
       window.addEventListener('pageshow', this.onPageShow)
@@ -224,21 +228,47 @@ export default {
     },
     addWorkFlow () {
       this.workflowToEdit = null
+      this.workflowToClone = null
+      this.cloningWorkflow = false
       this.editingWorkflow = false
       this.$set(this, 'creatingWorkflow', true)
     },
     editWorkFlow (item) {
       this.workflowToEdit = item
+      this.workflowToClone = null
+      this.cloningWorkflow = false
       this.creatingWorkflow = false
       this.$set(this, 'editingWorkflow', true)
     },
     closeModal () {
       this.creatingWorkflow = false
       this.editingWorkflow = false
+      this.cloningWorkflow = false
       this.workflowToEdit = null
+      this.workflowToClone = null
     },
     saveWorkflow (workflow) {
       if (this.accountId) workflow.account_id = this.accountId
+      
+      // Handle cloning
+      if (this.cloningWorkflow && this.workflowToClone) {
+        this.$api.post(`/api/workflow/${this.workflowToClone.id}/clone`, { name: workflow.name })
+          .then((r) => {
+            this.closeModal()
+            // Insert cloned workflow at top of current list for instant feedback
+            this.workflows.unshift(r.data)
+            // If pagination present and we exceeded page size, trim the last item to maintain UI consistency
+            if (this.pagination && this.workflows.length > this.pagination.per_page) {
+              this.workflows.pop()
+            }
+            this.successMessage(r.data, 'cloned')
+          })
+          .catch((e) => {
+            // Don't close modal on error - let user fix the validation error
+            this.handleWorkflowError(e)
+          })
+        return
+      }
       
       const isUpdate = !!workflow.id
       const apiCall = isUpdate
@@ -261,7 +291,7 @@ export default {
           }
         })
         .catch((e) => {
-          this.closeModal()
+          // Don't close modal on error - let user fix the validation error
           this.handleWorkflowError(e)
         })
     },
@@ -289,19 +319,21 @@ export default {
     home () {
       this.view = false
     },
-    async cloneWorkflow (item) {
-      try {
-        const { data } = await this.$api.post(`/api/workflow/${item.id}/clone`, {})
-        // Insert cloned workflow at top of current list for instant feedback
-        this.workflows.unshift(data)
-        // If pagination present and we exceeded page size, trim the last item to maintain UI consistency
-        if (this.pagination && this.workflows.length > this.pagination.per_page) {
-          this.workflows.pop()
+    cloneWorkflow (item) {
+      // Reset all modal states first
+      this.creatingWorkflow = false
+      this.editingWorkflow = false
+      this.workflowToEdit = null
+      this.workflowToClone = null
+      
+      // Set up the modal for cloning
+      this.workflowToClone = item
+      this.$nextTick(() => {
+        this.workflowToEdit = {
+          name: `Copy of ${item.name}`
         }
-        this.successMessage(data, 'cloned')
-      } catch (e) {
-        this.handleWorkflowError(e)
-      }
+        this.$set(this, 'cloningWorkflow', true)
+      })
     },
     async exportWorkflow (item) {
       try {
