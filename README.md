@@ -195,3 +195,53 @@ npm run production  # minified build
 ## Notes
 - Package ships Bootstrap 4, jQuery, and Popper bundled locally for offline/fast loads.
 - If you change DB settings, run `php artisan config:clear` to pick up new .env.
+
+## Development guide
+Development Guide
+### 1. Docker Configuration
+
+Mount the assure-workflow package into the container.
+
+In the volumes section of the webserver:
+
+- ../assure-workflow:/assure-workflow
+
+
+This allows Docker to use the local assure-workflow package during development.
+
+### 2. Composer Configuration
+
+Please add the following configuration to your composer.json in the Assure project.
+
+Under repositories:
+```json
+{
+  "type": "path",
+  "url": "../assure-workflow"
+}
+```
+
+Under require:
+```json
+"assure/workflow": "@dev"
+```
+
+This setup will automatically sync the local package with your Assure project.
+
+How It Works
+
+Composer processes repositories from top to bottom.
+The path repository is checked first.
+If the local path exists and is valid, Composer will use it.
+If the path does not exist or is invalid, Composer will fall back to the VCS repository.
+
+### 3. Frontend Assets
+
+For now, always make sure to include the public assets when promoting changes so that UI updates are properly reflected.
+
+Run the following command:
+```bash
+npm run dev
+```
+
+### 4. Promote everything including public js and css
