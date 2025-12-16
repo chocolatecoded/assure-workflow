@@ -16,6 +16,7 @@ use Assure\Workflow\Requests\UpdateWorkflowStepRequest;
 use Assure\Workflow\Requests\StoreWorkflowConditionRequest;
 use Assure\Workflow\Requests\UpdateWorkflowConditionRequest;
 use Assure\Workflow\Requests\ReorderWorkflowStepsRequest;
+use Assure\Workflow\Requests\CloneWorkflowRequest;
 use Illuminate\Support\Facades\DB;
 
 class WorkflowController extends Controller
@@ -228,19 +229,13 @@ class WorkflowController extends Controller
     /**
      * Clone a workflow including its steps and conditions.
      */
-    public function apiClone($id)
+    public function apiClone($id, CloneWorkflowRequest $request)
     {
         $original = Workflow::with(['steps.conditions'])->findOrFail($id);
 
-        $cloned = DB::transaction(function () use ($original) {
-            // Make new unique name
-            $baseName = $original->name;
-            $newName = $baseName . ' (Copy)';
-            $suffix = 2;
-            while (Workflow::where('name', $newName)->exists()) {
-                $newName = $baseName . " (Copy {$suffix})";
-                $suffix++;
-            }
+        $cloned = DB::transaction(function () use ($original, $request) {
+            // Use the name from the request
+            $newName = $request->validated()['name'];
 
             // Create workflow clone
             $newWorkflow = Workflow::create([

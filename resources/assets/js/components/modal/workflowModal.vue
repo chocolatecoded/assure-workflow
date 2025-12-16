@@ -2,7 +2,7 @@
   <div class="wf-modal-backdrop">
     <div class="wf-modal-card width-60">
       <div class="d-flex justify-content-between align-items-center mb-2 modal-header">
-        <h5 class="mb-0 modal-title">{{ workflow ? 'Edit Workflow' : 'New Workflow' }}</h5>
+        <h5 class="mb-0 modal-title">{{ modalTitle }}</h5>
         <button type="button" class="close" @click="$emit('closed')">×</button>
       </div>
       <form @submit.prevent="submit" style="padding: 0 20px 20px 20px;">
@@ -21,8 +21,15 @@
 
 <script>
 export default {
-  props: ['workflow'],
+  props: ['workflow', 'isCloning'],
   data: () => ({ form: { name: '' } }),
+  computed: {
+    modalTitle () {
+      if (this.isCloning) return 'Clone Workflow'
+      if (this.workflow && this.workflow.id) return 'Edit Workflow'
+      return 'New Workflow'
+    }
+  },
   watch: {
     workflow: {
       immediate: true,
