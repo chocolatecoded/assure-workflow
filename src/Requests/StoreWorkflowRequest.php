@@ -18,12 +18,5 @@ class StoreWorkflowRequest extends FormRequest
             'description' => 'nullable|string',
         ];
     }
-    
-    public function messages()
-    {
-        return [
-            'name.unique' => 'There is already a workflow called :input. Please use a different name.',
-        ];
-    }
 }
 
