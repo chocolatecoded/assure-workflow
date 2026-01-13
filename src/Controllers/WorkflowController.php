@@ -2,19 +2,22 @@
 
 namespace Assure\Workflow\Controllers;
 
-use Illuminate\Routing\Controller;
+use App\Models\WorkOrders;
 use Assure\Workflow\Models\Workflow;
+use Assure\Workflow\Models\WorkflowFormSubmission;
 use Assure\Workflow\Models\WorkflowInstance;
 use Assure\Workflow\Models\WorkflowStep;
 use Assure\Workflow\Models\WorkflowStepCondition;
+use Assure\Workflow\Requests\ReorderWorkflowStepsRequest;
+use Assure\Workflow\Requests\StoreWorkflowConditionRequest;
+use Assure\Workflow\Requests\StoreWorkflowRequest;
+use Assure\Workflow\Requests\StoreWorkflowStepRequest;
+use Assure\Workflow\Requests\UpdateWorkflowConditionRequest;
+use Assure\Workflow\Requests\UpdateWorkflowRequest;
+use Assure\Workflow\Requests\UpdateWorkflowStepRequest;
 use Assure\Workflow\Services\WorkflowEngine;
 use Illuminate\Http\Request;
-use Assure\Workflow\Requests\StoreWorkflowRequest;
-use Assure\Workflow\Requests\UpdateWorkflowRequest;
-use Assure\Workflow\Requests\StoreWorkflowStepRequest;
-use Assure\Workflow\Requests\UpdateWorkflowStepRequest;
-use Assure\Workflow\Requests\StoreWorkflowConditionRequest;
-use Assure\Workflow\Requests\UpdateWorkflowConditionRequest;
+use Illuminate\Routing\Controller;
 use Assure\Workflow\Requests\ReorderWorkflowStepsRequest;
 use Assure\Workflow\Requests\CloneWorkflowRequest;
 use Illuminate\Support\Facades\DB;
@@ -524,12 +527,35 @@ class WorkflowController extends Controller
      */
     public function apiFormComponents($workflowId, $formId)
     {
-
         $components = $this->fetchAuditorJotform($formId);
 
         return response()->json([
             'components' => $components,
         ]);
+    }
+
+    public function completeWorkflow(WorkflowFormSubmission $submission)
+    {
+        $workOrder = $submission->workOrder;
+        $workOrder->work_order_status = WorkOrders::PERMIT_APPROVED;
+        $workOrder->save();
+
+        $submission->update([
+            'work_order_status' => $workOrder->refresh()->work_order_status,
+        ]);
+
+        return response()->json($submission);
+    }
+
+    public function updateWorkflow(WorkflowFormSubmission $submission)
+    {
+        $workOrder = $submission->workOrder;
+
+        $submission->update([
+            'work_order_status' => $workOrder->refresh()->work_order_status,
+        ]);
+
+        return response()->json($submission);
     }
 }
 

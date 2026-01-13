@@ -13,5 +13,9 @@ return [
         'PRA' => 'PRA (default)',
         'Closure' => 'Closure',
     ],
+
+    'controllers' => [
+        'workflow' => \Assure\Workflow\Controllers\WorkflowController::class,
+    ],
 ];
 
