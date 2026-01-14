@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="DB_HOST" value="192.168.1.12" force="false"/>
+        <env name="DB_PORT" value="3306" force="false"/>
+        <env name="DB_DATABASE" value="swap_fut_staging" force="false"/>
+        <env name="DB_USERNAME" value="root" force="false"/>
+        <env name="DB_PASSWORD" value="root" force="false"/>
+    </php>
+</phpunit>
+
+
