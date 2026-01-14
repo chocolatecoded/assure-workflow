@@ -41,8 +41,7 @@ class WorkflowFormSubmission extends Model
 
     public function submissionSteps()
     {
-        return $this->hasMany(WorkflowFormSubmissionStep::class, 'work_order_id', 'work_order_id')
-            ->where('submission_id', $this->submission_id);
+        return $this->hasMany(WorkflowFormSubmissionStep::class, 'work_order_id', 'work_order_id');
     }
 
     public function workOrder()
