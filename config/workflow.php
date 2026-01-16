@@ -11,7 +11,12 @@ return [
     'dashboard_tile_roles' => ['super_admin'], // Roles that can see the tile,
     'step_types' => [
         'PRA' => 'PRA (default)',
-        'Closure' => 'Closure',
+        'CLOSURE' => 'Closure',
+        'PERMIT_OPEN' => 'Permit Open',
+        'PERMIT_CLOSE' => 'Permit Close',
+        'FORM_OPEN' => 'Form Open',
+        'FORM_CLOSE' => 'Form Close',
+        'APPROVAL' => 'Approval',
     ],
 
     'controllers' => [

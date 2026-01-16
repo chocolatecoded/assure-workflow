@@ -155,7 +155,7 @@ export default {
   },
   computed: {
     stepTypes () {
-      return { 'COMPOSER': 'Forms', 'APPROVAL': 'Approval Required' }
+      return { 'COMPOSER': 'Forms', 'APPROVAL': 'Approval Required', 'PRA_COMPLETION': 'PRA COMPLETION', 'PRA_CLOSURE': 'PRA CLOSURE' }
     },
     flowTypes () {
       return this.workflow.stepTypes || {}

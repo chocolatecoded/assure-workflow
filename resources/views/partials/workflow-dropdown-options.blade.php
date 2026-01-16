@@ -15,7 +15,7 @@
 @if(isset($workflows) && $workflows->count() > 0)
 <optgroup label="Configurable workflows" id="configurable-workflows-group" style="display: none;">
     @foreach($workflows as $workflow)
-        <option value="WORKFLOW/{{ $workflow->id }}" {{ isset($selectedValue) && $selectedValue == 'WORKFLOW/' . $workflow->id ? 'selected' : '' }}>
+        <option value="{{$workflow->id }}" {{ isset($selectedValue) && $selectedValue == $workflow->id ? 'selected' : '' }}>
             {{ $workflow->name }}
         </option>
     @endforeach
