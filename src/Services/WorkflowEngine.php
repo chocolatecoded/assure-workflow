@@ -40,7 +40,7 @@ class WorkflowEngine
         return $instance;
     }
 
-    public static function saveAnswer(array $answers, $content)
+    public static function saveAnswer(array $answers, $content, $workflow)
     {
         // Get the work order to access technicians
         $workOrder = WorkflowWorkOrder::where('work_order_no', $answers['workOrderNo'])->first();
@@ -65,10 +65,6 @@ class WorkflowEngine
 
         // Create new submission if no record exists
         if (!$submission) {
-            // Get workflow from company (similar to WorkflowController approach)
-            // For now, using a default workflow ID - this should be replaced with actual company-workflow relationship
-            $workflow = Workflow::find(30); // Default workflow, should be retrieved from company
-
             // Fallback: try to get workflow from company if relationship exists
             if (!$workflow && $workOrder->company) {
                 // This would need to be implemented based on your company-workflow relationship

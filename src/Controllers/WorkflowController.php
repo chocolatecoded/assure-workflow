@@ -25,6 +25,17 @@ class WorkflowController extends Controller
 {
     private $engine;
 
+    // Move this somewhere in a class
+    const MODULES = [
+        'PRA_COMPLETION' => ['APPROVAL', 'FORM_OPEN', 'PERMIT_OPEN', 'PERMIT_CLOSE', 'PRA'],
+        'PRA_CLOSURE' => ['FORM_CLOSE', 'PERMIT_CLOSE'],
+    ];
+
+    const virtualSteps = [
+        'FM_APPROVAL',
+        'END_FLOW',
+    ];
+
     public function __construct(WorkflowEngine $engine)
     {
         $this->engine = $engine;
@@ -463,6 +474,7 @@ class WorkflowController extends Controller
         $wf = Workflow::findOrFail($workflowId);
         $payload = $request->validated();
         $payload['workflow_id'] = $wf->id;
+        $payload['module'] = collect(self::MODULES)->search(fn($v) => in_array($request->type, $v)) ?: null;
         $step = WorkflowStep::create($payload);
         return response()->json($step, 201);
     }
@@ -471,6 +483,7 @@ class WorkflowController extends Controller
     {
         $step = WorkflowStep::with('conditions')->where('workflow_id', $workflowId)->findOrFail($stepId);
         $payload = $request->validated();
+        $payload['module'] = collect(self::MODULES)->search(fn($v) => in_array($request->type, $v)) ?: null;
         $step->update($payload);
         return response()->json($step);
     }
@@ -496,9 +509,22 @@ class WorkflowController extends Controller
     // Conditions
     public function apiStoreCondition($workflowId, $stepId, StoreWorkflowConditionRequest $request)
     {
+        // todo move this to constant
+        $virtualSteps = [
+            'FM_REVIEW',
+            'END_FLOW',
+        ];
+
         $step = WorkflowStep::where('workflow_id', $workflowId)->findOrFail($stepId);
         $payload = $request->validated();
         $payload['workflow_step_id'] = $step->id;
+        $payload['virtual_step'] = null;
+
+        if (in_array($request->workflow_show_step_id, self::virtualSteps)) {
+            $payload['virtual_step'] = $request->workflow_show_step_id;
+            $payload['workflow_show_step_id'] = $step->id; // To retain the foreign key, we set the value to its parent step
+        }
+
         $cond = WorkflowStepCondition::create($payload);
         return response()->json($cond, 201);
     }
@@ -509,6 +535,13 @@ class WorkflowController extends Controller
             $q->where('workflow_id', $workflowId)->where('id', $stepId);
         })->findOrFail($conditionId);
         $payload = $request->validated();
+
+        $payload['virtual_step'] = null;
+        if (in_array($request->workflow_show_step_id, self::virtualSteps)) {
+            $payload['virtual_step'] = $request->workflow_show_step_id;
+            $payload['workflow_show_step_id'] = $stepId;
+        }
+
         $cond->update($payload);
         return response()->json($cond);
     }

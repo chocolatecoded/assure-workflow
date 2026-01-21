@@ -29,7 +29,6 @@
               <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Type</th>
-                <th scope="col">Module</th>
                 <th scope="col">Conditions</th>
                 <th scope="col">Actions</th>
               </tr>
@@ -61,7 +60,6 @@
                     {{ item.name }}
                   </td>
                   <td class="align-middle">{{ item.type || '-' }}</td>
-                  <td class="align-middle">{{ item.module || '-' }}</td>
                   <td class="align-middle">{{ (item.conditions && item.conditions.length) || 0 }}</td>
                   <td class="text-center align-middle">
                     <button class="action-button" @click="editStep(item)">Edit</button>

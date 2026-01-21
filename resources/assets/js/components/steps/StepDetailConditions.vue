@@ -49,8 +49,10 @@
           </div>
           <div class="form-group">
             <label>Show Step:</label>
-            <select class="form-control" v-model="draft.workflow_show_step_id" required>
-              <option v-for="value in resubmitOptions" :key="value.id" :value="value.id">{{ value.text }}</option>
+            <select class="form-control" v-model="selectedStep" required>
+              <option v-for="value in resubmitOptions" :key="value.id" :value="value.id">
+                {{ value.text }}
+              </option>
             </select>
           </div>
 
@@ -92,6 +94,18 @@ export default {
     }
   },
   computed: {
+    selectedStep: {
+      get() {
+        // If virtual_step is END_FLOW, return END_FLOW as the selected value
+        return this.draft.virtual_step !== null ? this.draft.virtual_step : this.draft.workflow_show_step_id;
+      },
+      set(value) {
+        this.draft.workflow_show_step_id = value;
+      }
+    },
+    stepDisplayName (value) {
+        return value.text;
+    },
     matchOptions () {
       const comp = this.draft && this.draft.components
       if (!comp || !comp.options) return false

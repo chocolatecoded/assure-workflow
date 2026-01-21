@@ -30,11 +30,8 @@ class StoreWorkflowStepRequest extends FormRequest
             'order' => 'nullable|integer',
             // required fields
             'type' => 'required|string',
-            'module' => 'required|string',
             // nested data validations by module
             'data' => 'nullable',
-            'data.formId' => 'required_if:module,COMPOSER',
-            'data.declineGoBack' => 'required_if:module,APPROVAL',
             // 'data.formsToApprove' => 'required_if:module,APPROVAL|array|min:1',
             'condition_citeria' => 'nullable|string',
         ];

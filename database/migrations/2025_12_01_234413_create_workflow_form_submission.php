@@ -44,8 +44,9 @@ class CreateWorkflowFormSubmission extends Migration
         });
 
         Schema::table('workflow_step_conditions', function (Blueprint $table) {
-            $table->boolean('is_proceed_to_next_step')->after('text');
-            $table->unsignedInteger('order')->default(0)->after('is_proceed_to_next_step');
+            $table->unsignedInteger('order')->after('workflow_show_step_id')->default(0);
+            $table->renameColumn('condition_type', 'virtual_step');
+            $table->dropForeign('workflow_step_conditions_workflow_show_step_id_foreign');
         });
     }
 
@@ -61,8 +62,8 @@ class CreateWorkflowFormSubmission extends Migration
         Schema::dropIfExists('workflow_form_submission_outputs');
 
         Schema::table('workflow_step_conditions', function (Blueprint $table) {
-            $table->dropColumn('is_proceed_to_next_step');
             $table->dropColumn('order');
+            $table->renameColumn('virtual_step', 'condition_type');
         });
     }
 }

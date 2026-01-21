@@ -20,7 +20,6 @@ class WorkflowStepCondition extends Model
 
     protected $fillable = [
         'workflow_step_id',
-        'condition_type',
         'condition_id',
         'match_type',
         'name',
@@ -28,6 +27,7 @@ class WorkflowStepCondition extends Model
         'data',
         'text',
         'workflow_show_step_id',
+        'virtual_step',
     ];
 
     protected $casts = [
