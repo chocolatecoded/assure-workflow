@@ -127,6 +127,10 @@ export default {
     formApproveOptions () {
       return this.workflow.steps.map(s => ({ id: s.id, text: s.name }))
     },
+    // linkedOpenPermits () {
+    //   return this.workflow.steps.filter(s => s.type === 'PERMIT_OPEN')
+    //       .map(s => ({ id: s.id, text: s.name }))
+    // },
 
     formResubmitOptions () {
 

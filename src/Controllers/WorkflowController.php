@@ -27,7 +27,7 @@ class WorkflowController extends Controller
 
     // Move this somewhere in a class
     const MODULES = [
-        'PRA_COMPLETION' => ['APPROVAL', 'FORM_OPEN', 'PERMIT_OPEN', 'PERMIT_CLOSE', 'PRA'],
+        'PRA_COMPLETION' => ['APPROVAL', 'FORM_OPEN', 'PERMIT_OPEN', 'PRA'],
         'PRA_CLOSURE' => ['FORM_CLOSE', 'PERMIT_CLOSE'],
     ];
 

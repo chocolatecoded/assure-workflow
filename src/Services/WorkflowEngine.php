@@ -40,7 +40,7 @@ class WorkflowEngine
         return $instance;
     }
 
-    public static function saveAnswer(array $answers, $content, $workflow)
+    public static function saveAnswer(array $answers, $content, $workflow, $module)
     {
         // Get the work order to access technicians
         $workOrder = WorkflowWorkOrder::where('work_order_no', $answers['workOrderNo'])->first();
@@ -55,11 +55,13 @@ class WorkflowEngine
         }
         $technician_id = $workOrderTechnician->user_id;
 
-//        $submission = WorkflowFormSubmission::find(6);
-
         // Check if there is an existing submission record for the WO and technician_id
         $submission = WorkflowFormSubmission::where('work_order_id', $workOrder->id)
-            ->whereNotIn('work_order_status', ['Permit Approved', 'Awaiting Permit Approval'])
+            ->when($module === 'PRA_COMPLETION', function ($query) use ($workOrder) {
+                return $query->whereNotIn('work_order_status', ['Permit Approved', 'Awaiting Permit Approval']);
+            }, function ($query) {
+                return $query->whereIn('work_order_status', ['Permit Approved', 'Awaiting Permit Approval']);
+            })
             ->where('technician_id', $technician_id)
             ->first();
 
@@ -173,79 +175,8 @@ class WorkflowEngine
             }
         }
 
-
-
-
         return [$submission, $currentStep];
     }
-
-//    public static function validateNextWorkflow($workflow, $submission)
-//    {
-//
-//        //***************************************
-//        // process NEXT STEP
-//        // Get the steps of the attached workflow
-//        $currentStep = $submission->step;
-//        $workflowSteps = $workflow->steps()->orderBy('order', 'ASC')->get();
-//        $nextStep = null;
-//        foreach ($workflowSteps as $step) {
-//
-//            $stepConditions = $step->conditions;
-//            foreach ($stepConditions as $condition) {
-//                // Get the answers
-//                $outputs = $submission->submissionsOutput()->where('name', $condition->name)->get();
-//                if ($step->match($outputs, $condition)) {
-//                    // found next step
-//
-//
-//                    // check if condition is already recorded, if recorded - skip the condition and proceed to next condition/step checking
-//                    $isStepDone = WorkflowFormSubmissionStep::where('workflow_form_submission_id', $submission->id)
-//                        ->where('work_flow_step_id', $condition->showStep->id)->exists();
-//
-//                    if (!$isStepDone) {
-//                        // stop checking, return $condition as next step
-//                        $nextStep = $condition->showStep;
-//                        break;
-//                    }
-//
-//                    // proceed to next condition/step checking
-//                    continue;
-//                }
-//            }
-//
-//            // If step is greater than the current step and is not the current step, use it as nextStep
-//            if (($step->order > $currentStep->order) && ($step->order != $currentStep->order)) {
-//                $nextStep = $step;
-//            }
-//
-//            if($nextStep) {
-//                break;
-//            }
-//        }
-//
-//        // If step is NO APPROVE Required
-//        if ($nextStep->module === 'NO APPROVAL') {
-//            // Process no Approval
-//
-//            // complete PRA
-//            if ($step->type === 'PRA') {
-//                $workOrder->recordApproval();
-//
-////                event(new WorkflowPraComplete($workOrder));
-//
-//                $workOrder->work_order_status = WorkflowWorkOrder::PERMIT_APPROVED;
-//                $workOrder->save();
-//            }
-//        }
-//
-//        if ($nextStep) {
-//            $submission->update([
-//                'work_flow_step_id' => $nextStep->id,
-//            ]);
-//        }
-//
-//        return $submission;
-//    }
 
 }
 
