@@ -32,7 +32,6 @@ class UpdateWorkflowStepRequest extends FormRequest
             ],
             'order' => 'sometimes|nullable|integer',
             'type' => 'sometimes|required|string',
-            'module' => 'sometimes|required|string',
             'data' => 'sometimes|nullable',
             'data.formId' => 'sometimes|required_if:module,COMPOSER',
             'data.declineGoBack' => 'sometimes|required_if:module,APPROVAL',

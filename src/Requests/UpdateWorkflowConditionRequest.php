@@ -21,7 +21,6 @@ class UpdateWorkflowConditionRequest extends FormRequest
             'value' => 'sometimes|nullable|string',
             'data' => 'sometimes|nullable|array',
             'text' => 'sometimes|nullable|string',
-            'workflow_show_step_id' => 'sometimes|nullable|integer',
         ];
     }
 }

@@ -11,9 +11,15 @@ class WorkflowStepCondition extends Model
 
     protected $table = 'workflow_step_conditions';
 
+    const CONTAINS = "CONTAINS";
+    const NOTCONTAINS = "NOTCONTAINS";
+    const EQUALS = "EQUALS";
+    const NOTEQUALS = "NOTEQUALS";
+    const EMPTY = "EMPTY";
+    const NOTEMPTY = "NOTEMPTY";
+
     protected $fillable = [
         'workflow_step_id',
-        'condition_type',
         'condition_id',
         'match_type',
         'name',
@@ -21,6 +27,7 @@ class WorkflowStepCondition extends Model
         'data',
         'text',
         'workflow_show_step_id',
+        'virtual_step',
     ];
 
     protected $casts = [

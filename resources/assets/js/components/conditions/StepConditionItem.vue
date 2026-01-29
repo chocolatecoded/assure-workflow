@@ -23,6 +23,10 @@ export default {
   props: ['condition', 'workflow', 'forms', 'step'],
   computed: {
     showStep () {
+      if (this.condition.virtual_step != null) {
+        return this.condition.virtual_step
+      }
+
       const id = this.condition && this.condition.workflow_show_step_id
       const s = (this.workflow.steps || []).find(x => x.id === id)
       return s ? s.name : ''

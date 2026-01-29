@@ -54,7 +54,7 @@ export default {
   data () {
     return {
       localConditions: JSON.parse(JSON.stringify(this.step.conditions || [])),
-      condition: { components: '', condition_id: '', match_type: '', name: '', value: '', workflow_show_step_id: '' },
+      condition: { virtual_step: null, components: '', condition_id: '', match_type: '', name: '', value: '', workflow_show_step_id: '' },
       workflowId: null,
       stepId: null  ,
       components: [],
@@ -86,9 +86,18 @@ export default {
       let index = steps.findIndex(step => step.id == this.step.id);
       let optSteps = steps.slice(index + 1, steps.length);
 
-      return optSteps.map(f => {
+      // move this somewhere in the BE?
+      const virtualSteps = [
+        { id: 'FM_APPROVAL', text: 'FM APPROVAL (Virtual Step)' },
+        { id: 'END_FLOW', text: 'END FLOW (Virtual Step)' }
+      ];
+
+      return [
+        ...optSteps.map(f => {
           return { id: f.id, text: f.name}
-      });
+        }),
+        ...virtualSteps
+      ];
 
     },
 
@@ -119,7 +128,7 @@ export default {
   methods: {
     openCreate () {
       // reset for create
-      this.condition = { components: '', condition_id: '', match_type: '', name: '', value: '', workflow_show_step_id: '' }
+      this.condition = { virtual_step: null, components: '', condition_id: '', match_type: '', name: '', value: '', workflow_show_step_id: '' }
       this.modalVisible = true
     },
     onEditCondition (cond) {
@@ -131,7 +140,8 @@ export default {
         match_type: cond.match_type || '',
         name: cond.name || (comp ? comp.text : ''),
         value: cond.value || '',
-        workflow_show_step_id: cond.workflow_show_step_id || ''
+        workflow_show_step_id: cond.workflow_show_step_id || '',
+        virtual_step: cond.virtual_step,
       }
       this.modalVisible = true
     },

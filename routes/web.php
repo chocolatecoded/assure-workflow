@@ -42,3 +42,16 @@ Route::group([
     Route::get('/{workflowId}/steps/{stepId}/form-components', 'Assure\\Workflow\\Controllers\\WorkflowController@apiFormComponents')->name('steps.form_components');
 });
 
+
+// TODO - add new middleware for mobile?
+Route::group([
+    'prefix' => 'api/v3/workflow',
+    'as' => 'workflow.api.',
+    'middleware' => ['web']
+], function () {
+
+    $controller = config('workflow.controllers.workflow');
+    Route::get('next-step/{workOrder}', $controller . '@apiGetNextStep')->name('workflow.next_step');
+    Route::post('complete-workflow/{submission}', 'Assure\\Workflow\\Controllers\\WorkflowController' . '@completeWorkflow')->name('workflow.complete_workflow');
+    Route::post('update-workflow/{submission}', 'Assure\\Workflow\\Controllers\\WorkflowController' . '@updateWorkflow')->name('workflow.update_workflow');
+});
