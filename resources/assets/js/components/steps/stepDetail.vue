@@ -36,17 +36,8 @@
               <p class="label v-required" v-if="serverError('type')">{{ serverError('type') }}</p>
             </div>
 
-            <!-- Module Step Type -->
-            <div class="form-group">
-              <label for="module-1">Module Step Type:</label>
-              <select id="module-1" v-model="ghost.module" class="form-control">
-                <option v-for="(label, value) in stepTypes" :key="value" :value="value">{{ label }}</option>
-              </select>
-              <p class="label v-required" v-if="serverError('module')">{{ serverError('module') }}</p>
-            </div>
-
             <!-- Form Name (COMPOSER) -->
-            <div class="form-group" v-if="ghost.module == 'COMPOSER'">
+            <div class="form-group">
               <label for="form-name">Form Name:</label>
               <select2
                 :value="ghost.data.formId"
@@ -61,51 +52,13 @@
 
               <p class="label v-required" v-if="serverError('formId')">{{ serverError('formId') }}</p>
             </div>
-
-            <!-- Approval-specific Fields -->
-            <template v-if="ghost.module == 'APPROVAL'">
-              <div class="form-group">
-                <label for="show-1">If Resubmit What Step To Show:</label>
-
-                <select2
-                  :value="ghost.data.declineGoBack"
-                  @select="onSelect('declineGoBack', $event)"
-                  :options="formResubmitOptions"
-                  :settings="{dropdownParent: $refs.modalBody}"
-                />
-
-                <p class="label v-required" v-if="serverError('declineGoBack')">{{ serverError('declineGoBack') }}</p>
-
-              </div>
-
-              <div class="form-group">
-                <label for="form-checklist">Select Checklist Form (optional):</label>
-                <select2
-                  :value="ghost.data.checklistId"
-                  @select="onSelect('checklistId', $event)"
-                  :options="formOptions"
-                  :settings="{placeholder: 'Select Form', dropdownParent: $refs.modalBody, allowClear: true}"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="form-approve">Select Steps To Approve:</label>
-                <select2
-                  :value="ghost.data.formsToApprove"
-                  @select="onSelect('formsToApprove', $event)"
-                  :options="formApproveOptions"
-                  :settings="{placeholder: 'Select Step', multiple: true, dropdownParent: $refs.modalBody}"
-                />
-              </div>
-              <p class="label v-required" v-if="serverError('formsToApprove')">{{ serverError('formsToApprove') }}</p>
-            </template>
           </div>
 
         </form>
 
         <!-- Conditions editor -->
         <step-conditions
-          v-if="ghost.id && ghost.module == 'COMPOSER'"
+          v-if="ghost.id"
           :step="ghost"
           :workflow="workflow"
           :forms="forms"
@@ -155,7 +108,7 @@ export default {
   },
   computed: {
     stepTypes () {
-      return { 'COMPOSER': 'Forms', 'APPROVAL': 'Approval Required' }
+      return { 'COMPOSER': 'Forms', 'APPROVAL': 'Approval Required', 'PRA_COMPLETION': 'PRA COMPLETION', 'PRA_CLOSURE': 'PRA CLOSURE' }
     },
     flowTypes () {
       return this.workflow.stepTypes || {}
@@ -174,6 +127,10 @@ export default {
     formApproveOptions () {
       return this.workflow.steps.map(s => ({ id: s.id, text: s.name }))
     },
+    // linkedOpenPermits () {
+    //   return this.workflow.steps.filter(s => s.type === 'PERMIT_OPEN')
+    //       .map(s => ({ id: s.id, text: s.name }))
+    // },
 
     formResubmitOptions () {
 
