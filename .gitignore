@@ -24,8 +24,8 @@ vendor/
 node_modules/
 
 # Compiled assets (build outputs should not be committed)
-public/js/
-public/css/
-public/mix-manifest.json
+#public/js/
+#public/css/
+#public/mix-manifest.json
 # Keep the fonts directory (static assets)
-!public/fonts/
+#!public/fonts/
