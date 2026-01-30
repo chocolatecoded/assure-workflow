@@ -33,23 +33,63 @@ composer config repositories.assure-workflow vcs https://github.com/chocolatecod
 composer require assure/workflow:dev-master
 ```
 
-After installation, proceed with the install command below to run migrations and (optionally) build assets.
+After installation, proceed with the setup steps below.
 
-### One-step install
+### Setup Steps
 
+#### 1. Run migrations
+
+```bash
+php artisan migrate
 ```
-php artisan assure-workflow:install --build
+
+#### 2. Publish and compile assets
+
+The package now publishes **source assets** for compilation in your main application, avoiding hardcoded paths and keeping the package portable.
+
+**Publish the source assets:**
+
+```bash
+php artisan vendor:publish --tag=workflow-assets
 ```
 
-Options:
-- `--production` to run a production asset build (`npm run production`)
-- Omit `--build` if you only want to run the DB migrations
+This copies the source files to:
+- `resources/assets/vendor/workflow/js/`
+- `resources/assets/vendor/workflow/sass/`
 
-This command:
-- Runs package migrations (auto-loaded via the service provider)
-- Optionally installs Node deps and builds the package assets
+**Publish static assets (fonts):**
 
-Assets are served directly from the package at `/vendor/assure-workflow/*`, so publishing to `public/` is not required.
+```bash
+php artisan vendor:publish --tag=workflow-fonts
+```
+
+This copies fonts to `public/vendor/workflow/fonts/`
+
+**Add to your main app's `webpack.mix.js`:**
+
+```js
+// Compile workflow package assets
+mix.js('resources/assets/vendor/workflow/js/workflow.js', 'public/vendor/workflow/js')
+   .sass('resources/assets/vendor/workflow/sass/workflow.scss', 'public/vendor/workflow/css');
+```
+
+**Compile assets:**
+
+```bash
+npm run dev
+# or for production
+npm run production
+```
+
+#### 3. Publish config (optional)
+
+```bash
+php artisan vendor:publish --tag=workflow-config
+```
+
+### Asset Serving
+
+Compiled assets are automatically served from your main app's `public/vendor/workflow/` directory at the route `/vendor/assure-workflow/*`.
 
 
 ## Routes
@@ -180,17 +220,47 @@ Behavior:
   - The select has options with class `hardcoded-form` (for proper hide/show switching).
 
 ## Development
-- Source:
-  - PHP: `packages/workflow/src` (models, services, controllers, provider)
-  - Vue/Assets: `packages/workflow/resources/assets` (built via Laravel Mix)
-  - Views: `packages/workflow/resources/views`
-- Build:
 
-```
-npm run dev     # dev build
-npm run watch   # watch mode
-npm run production  # minified build
-```
+### Package Structure
+- PHP: `src/` (models, services, controllers, provider)
+- Vue/Assets: `resources/assets/` (source files)
+- Views: `resources/views/`
+
+### Important: Compiled Assets Are Not Committed
+
+As of the latest version, compiled assets (`public/js/`, `public/css/`) are **excluded from version control**. This prevents:
+- Hardcoded local paths from leaking into the bundle
+- Merge conflicts on compiled files
+- Bloated repository size
+
+### Local Development Workflow
+
+When developing this package locally:
+
+1. **Make changes** to source files in `resources/assets/`
+
+2. **For testing in the main app**, either:
+   
+   **Option A: Symlink approach (recommended)**
+   ```bash
+   # In main app
+   composer config repositories.workflow path "../assure-workflow"
+   composer require assure/workflow:@dev
+   php artisan vendor:publish --tag=workflow-assets --force
+   npm run dev
+   ```
+
+   **Option B: Direct compilation in package** (for quick testing)
+   ```bash
+   # In the package directory
+   npm install
+   npm run dev
+   ```
+   Then manually copy `public/js/workflow.js` and `public/css/workflow.css` to your test app's `public/vendor/workflow/` directory.
+
+### Building for Distribution
+
+Since compiled assets are not committed, consuming applications must compile them. See the Setup Steps section above for instructions.
 
 ## Notes
 - Package ships Bootstrap 4, jQuery, and Popper bundled locally for offline/fast loads.
@@ -243,13 +313,29 @@ to update the package
 
 ### 3. Frontend Assets
 
-For now, always make sure to include the public assets when promoting changes so that UI updates are properly reflected.
+**IMPORTANT CHANGE:** Compiled assets are no longer committed to the repository.
 
-Run the following command:
+When you make frontend changes:
+1. Edit source files in `resources/assets/`
+2. Commit ONLY the source files
+3. Push your changes
+4. In the main app, run:
+   ```bash
+   composer update assure/workflow
+   php artisan vendor:publish --tag=workflow-assets --force
+   npm run dev
+   ```
+
+### 4. Promoting Changes
+
+When promoting changes:
+- ✅ DO commit: Source files (`resources/assets/`)
+- ✅ DO commit: PHP files, migrations, views
+- ❌ DO NOT commit: `public/js/`, `public/css/`, `public/mix-manifest.json`
+- ✅ DO commit: `public/fonts/` (static assets are OK)
+
+**Before promoting, verify:**
 ```bash
-npm run dev
+git status
+# Should NOT show public/js/ or public/css/ as modified
 ```
-
-### 4. Promote everything including public js and css
-
-# !!! important Before promoting be cautious to the composer.json in assure project !!!
