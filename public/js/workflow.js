@@ -70746,7 +70746,7 @@ module.exports = {
 /* 315 */
 /***/ (function(module, exports) {
 
-module.exports = {"_args":[["axios@0.21.4","/home/vincent/workspace/bmad-swap/assure-workflow"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"/home/vincent/workspace/bmad-swap/assure-workflow","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}
+module.exports = {"_args":[["axios@0.21.4","/home/iamgroot/Documents/projects/swap/assure-workflow"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"/home/iamgroot/Documents/projects/swap/assure-workflow","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}
 
 /***/ }),
 /* 316 */
@@ -81230,8 +81230,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
 
 
 
@@ -81636,53 +81634,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -81714,7 +81665,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   computed: {
     stepTypes: function stepTypes() {
-      return { 'COMPOSER': 'Forms', 'APPROVAL': 'Approval Required' };
+      return { 'COMPOSER': 'Forms', 'APPROVAL': 'Approval Required', 'PRA_COMPLETION': 'PRA COMPLETION', 'PRA_CLOSURE': 'PRA CLOSURE' };
     },
     flowTypes: function flowTypes() {
       return this.workflow.stepTypes || {};
@@ -81737,6 +81688,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         return { id: s.id, text: s.name };
       });
     },
+
+    // linkedOpenPermits () {
+    //   return this.workflow.steps.filter(s => s.type === 'PERMIT_OPEN')
+    //       .map(s => ({ id: s.id, text: s.name }))
+    // },
+
     formResubmitOptions: function formResubmitOptions() {
 
       var currentStepId = this.ghost.id;
@@ -108422,6 +108379,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 //
 //
 //
@@ -108478,7 +108437,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   data: function data() {
     return {
       localConditions: JSON.parse(JSON.stringify(this.step.conditions || [])),
-      condition: { components: '', condition_id: '', match_type: '', name: '', value: '', workflow_show_step_id: '' },
+      condition: { virtual_step: null, components: '', condition_id: '', match_type: '', name: '', value: '', workflow_show_step_id: '' },
       workflowId: null,
       stepId: null,
       components: [],
@@ -108512,9 +108471,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       });
       var optSteps = steps.slice(index + 1, steps.length);
 
-      return optSteps.map(function (f) {
+      // move this somewhere in the BE?
+      var virtualSteps = [{ id: 'FM_APPROVAL', text: 'FM APPROVAL (Virtual Step)' }, { id: 'END_FLOW', text: 'END FLOW (Virtual Step)' }];
+
+      return [].concat(_toConsumableArray(optSteps.map(function (f) {
         return { id: f.id, text: f.name };
-      });
+      })), virtualSteps);
     },
     formComponentOptions: function formComponentOptions() {
 
@@ -108538,7 +108500,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   methods: {
     openCreate: function openCreate() {
       // reset for create
-      this.condition = { components: '', condition_id: '', match_type: '', name: '', value: '', workflow_show_step_id: '' };
+      this.condition = { virtual_step: null, components: '', condition_id: '', match_type: '', name: '', value: '', workflow_show_step_id: '' };
       this.modalVisible = true;
     },
     onEditCondition: function onEditCondition(cond) {
@@ -108552,7 +108514,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         match_type: cond.match_type || '',
         name: cond.name || (comp ? comp.text : ''),
         value: cond.value || '',
-        workflow_show_step_id: cond.workflow_show_step_id || ''
+        workflow_show_step_id: cond.workflow_show_step_id || '',
+        virtual_step: cond.virtual_step
       };
       this.modalVisible = true;
     },
@@ -108800,6 +108763,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   props: ['condition', 'workflow', 'forms', 'step'],
   computed: {
     showStep: function showStep() {
+      if (this.condition.virtual_step != null) {
+        return this.condition.virtual_step;
+      }
+
       var id = this.condition && this.condition.workflow_show_step_id;
       var s = (this.workflow.steps || []).find(function (x) {
         return x.id === id;
@@ -109141,6 +109108,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
 
 
 
@@ -109173,6 +109142,18 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }
   },
   computed: {
+    selectedStep: {
+      get: function get() {
+        // If virtual_step is END_FLOW, return END_FLOW as the selected value
+        return this.draft.virtual_step !== null ? this.draft.virtual_step : this.draft.workflow_show_step_id;
+      },
+      set: function set(value) {
+        this.draft.workflow_show_step_id = value;
+      }
+    },
+    stepDisplayName: function stepDisplayName(value) {
+      return value.text;
+    },
     matchOptions: function matchOptions() {
       var comp = this.draft && this.draft.components;
       if (!comp || !comp.options) return false;
@@ -109463,8 +109444,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.draft.workflow_show_step_id,
-                            expression: "draft.workflow_show_step_id"
+                            value: _vm.selectedStep,
+                            expression: "selectedStep"
                           }
                         ],
                         staticClass: "form-control",
@@ -109479,13 +109460,9 @@ var render = function() {
                                 var val = "_value" in o ? o._value : o.value
                                 return val
                               })
-                            _vm.$set(
-                              _vm.draft,
-                              "workflow_show_step_id",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
+                            _vm.selectedStep = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
                           }
                         }
                       },
@@ -109493,7 +109470,13 @@ var render = function() {
                         return _c(
                           "option",
                           { key: value.id, domProps: { value: value.id } },
-                          [_vm._v(_vm._s(value.text))]
+                          [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(value.text) +
+                                "\n            "
+                            )
+                          ]
                         )
                       }),
                       0
@@ -109727,300 +109710,138 @@ var render = function() {
           { ref: "modalBody", staticClass: "modal-body" },
           [
             _c("form", [
-              _c(
-                "div",
-                { staticClass: "b-custom-form" },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "name-1" } }, [
-                      _vm._v("Step Name:")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
+              _c("div", { staticClass: "b-custom-form" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "name-1" } }, [
+                    _vm._v("Step Name:")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.ghost.name,
+                        expression: "ghost.name"
+                      }
+                    ],
+                    staticClass: "form-control mb-0",
+                    attrs: {
+                      id: "name-1",
+                      type: "text",
+                      placeholder: "Enter name",
+                      required: ""
+                    },
+                    domProps: { value: _vm.ghost.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.ghost, "name", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.serverError("name")
+                    ? _c("p", { staticClass: "label v-required" }, [
+                        _vm._v(_vm._s(_vm.serverError("name")))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "step-type" } }, [
+                    _vm._v("Step Type:")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
                       directives: [
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.ghost.name,
-                          expression: "ghost.name"
+                          value: _vm.ghost.type,
+                          expression: "ghost.type"
                         }
                       ],
-                      staticClass: "form-control mb-0",
-                      attrs: {
-                        id: "name-1",
-                        type: "text",
-                        placeholder: "Enter name",
-                        required: ""
-                      },
-                      domProps: { value: _vm.ghost.name },
+                      staticClass: "form-control",
+                      attrs: { id: "step-type" },
                       on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.ghost, "name", $event.target.value)
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.ghost,
+                            "type",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    _vm._l(_vm.flowTypes, function(label, value) {
+                      return _c(
+                        "option",
+                        { key: value, domProps: { value: value } },
+                        [_vm._v(_vm._s(label))]
+                      )
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _vm.serverError("type")
+                    ? _c("p", { staticClass: "label v-required" }, [
+                        _vm._v(_vm._s(_vm.serverError("type")))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("label", { attrs: { for: "form-name" } }, [
+                      _vm._v("Form Name:")
+                    ]),
+                    _vm._v(" "),
+                    _c("select2", {
+                      attrs: {
+                        value: _vm.ghost.data.formId,
+                        options: _vm.formOptions,
+                        settings: {
+                          placeholder: "Select Form",
+                          dropdownParent: _vm.$refs.modalBody,
+                          matcher: _vm.customMatcher
+                        }
+                      },
+                      on: {
+                        select: function($event) {
+                          return _vm.onSelect("formId", $event)
                         }
                       }
                     }),
                     _vm._v(" "),
-                    _vm.serverError("name")
+                    _vm.serverError("formId")
                       ? _c("p", { staticClass: "label v-required" }, [
-                          _vm._v(_vm._s(_vm.serverError("name")))
+                          _vm._v(_vm._s(_vm.serverError("formId")))
                         ])
                       : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "step-type" } }, [
-                      _vm._v("Step Type:")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.ghost.type,
-                            expression: "ghost.type"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { id: "step-type" },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.ghost,
-                              "type",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      _vm._l(_vm.flowTypes, function(label, value) {
-                        return _c(
-                          "option",
-                          { key: value, domProps: { value: value } },
-                          [_vm._v(_vm._s(label))]
-                        )
-                      }),
-                      0
-                    ),
-                    _vm._v(" "),
-                    _vm.serverError("type")
-                      ? _c("p", { staticClass: "label v-required" }, [
-                          _vm._v(_vm._s(_vm.serverError("type")))
-                        ])
-                      : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "module-1" } }, [
-                      _vm._v("Module Step Type:")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.ghost.module,
-                            expression: "ghost.module"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { id: "module-1" },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.ghost,
-                              "module",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      _vm._l(_vm.stepTypes, function(label, value) {
-                        return _c(
-                          "option",
-                          { key: value, domProps: { value: value } },
-                          [_vm._v(_vm._s(label))]
-                        )
-                      }),
-                      0
-                    ),
-                    _vm._v(" "),
-                    _vm.serverError("module")
-                      ? _c("p", { staticClass: "label v-required" }, [
-                          _vm._v(_vm._s(_vm.serverError("module")))
-                        ])
-                      : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _vm.ghost.module == "COMPOSER"
-                    ? _c(
-                        "div",
-                        { staticClass: "form-group" },
-                        [
-                          _c("label", { attrs: { for: "form-name" } }, [
-                            _vm._v("Form Name:")
-                          ]),
-                          _vm._v(" "),
-                          _c("select2", {
-                            attrs: {
-                              value: _vm.ghost.data.formId,
-                              options: _vm.formOptions,
-                              settings: {
-                                placeholder: "Select Form",
-                                dropdownParent: _vm.$refs.modalBody,
-                                matcher: _vm.customMatcher
-                              }
-                            },
-                            on: {
-                              select: function($event) {
-                                return _vm.onSelect("formId", $event)
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.serverError("formId")
-                            ? _c("p", { staticClass: "label v-required" }, [
-                                _vm._v(_vm._s(_vm.serverError("formId")))
-                              ])
-                            : _vm._e()
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.ghost.module == "APPROVAL"
-                    ? [
-                        _c(
-                          "div",
-                          { staticClass: "form-group" },
-                          [
-                            _c("label", { attrs: { for: "show-1" } }, [
-                              _vm._v("If Resubmit What Step To Show:")
-                            ]),
-                            _vm._v(" "),
-                            _c("select2", {
-                              attrs: {
-                                value: _vm.ghost.data.declineGoBack,
-                                options: _vm.formResubmitOptions,
-                                settings: {
-                                  dropdownParent: _vm.$refs.modalBody
-                                }
-                              },
-                              on: {
-                                select: function($event) {
-                                  return _vm.onSelect("declineGoBack", $event)
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.serverError("declineGoBack")
-                              ? _c("p", { staticClass: "label v-required" }, [
-                                  _vm._v(
-                                    _vm._s(_vm.serverError("declineGoBack"))
-                                  )
-                                ])
-                              : _vm._e()
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "form-group" },
-                          [
-                            _c("label", { attrs: { for: "form-checklist" } }, [
-                              _vm._v("Select Checklist Form (optional):")
-                            ]),
-                            _vm._v(" "),
-                            _c("select2", {
-                              attrs: {
-                                value: _vm.ghost.data.checklistId,
-                                options: _vm.formOptions,
-                                settings: {
-                                  placeholder: "Select Form",
-                                  dropdownParent: _vm.$refs.modalBody,
-                                  allowClear: true
-                                }
-                              },
-                              on: {
-                                select: function($event) {
-                                  return _vm.onSelect("checklistId", $event)
-                                }
-                              }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "form-group" },
-                          [
-                            _c("label", { attrs: { for: "form-approve" } }, [
-                              _vm._v("Select Steps To Approve:")
-                            ]),
-                            _vm._v(" "),
-                            _c("select2", {
-                              attrs: {
-                                value: _vm.ghost.data.formsToApprove,
-                                options: _vm.formApproveOptions,
-                                settings: {
-                                  placeholder: "Select Step",
-                                  multiple: true,
-                                  dropdownParent: _vm.$refs.modalBody
-                                }
-                              },
-                              on: {
-                                select: function($event) {
-                                  return _vm.onSelect("formsToApprove", $event)
-                                }
-                              }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _vm.serverError("formsToApprove")
-                          ? _c("p", { staticClass: "label v-required" }, [
-                              _vm._v(_vm._s(_vm.serverError("formsToApprove")))
-                            ])
-                          : _vm._e()
-                      ]
-                    : _vm._e()
-                ],
-                2
-              )
+                  ],
+                  1
+                )
+              ])
             ]),
             _vm._v(" "),
-            _vm.ghost.id && _vm.ghost.module == "COMPOSER"
+            _vm.ghost.id
               ? _c("step-conditions", {
                   attrs: {
                     step: _vm.ghost,
@@ -110187,10 +110008,6 @@ var render = function() {
                                 ]),
                                 _vm._v(" "),
                                 _c("td", { staticClass: "align-middle" }, [
-                                  _vm._v(_vm._s(item.module || "-"))
-                                ]),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "align-middle" }, [
                                   _vm._v(
                                     _vm._s(
                                       (item.conditions &&
@@ -110295,8 +110112,6 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Type")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Module")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Conditions")]),
         _vm._v(" "),
